@@ -2,7 +2,7 @@ return {
   "folke/neodev.nvim",
   "folke/which-key.nvim",
   { "folke/neoconf.nvim", cmd = "Neoconf" },
-  
+
  -- UI
   { "nvim-lualine/lualine.nvim" },
   { "nvim-tree/nvim-tree.lua" },
@@ -13,8 +13,9 @@ return {
   { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "L3MON4D3/LuaSnip" },
-  { "mason-org/mason.nvim", opts = {} },
 
+  -- Mason LSP Manager
+  { "mason-org/mason.nvim", opts = {} },
   {
       "mason-org/mason-lspconfig.nvim",
       opts = {
@@ -31,4 +32,3 @@ return {
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
 }
-
