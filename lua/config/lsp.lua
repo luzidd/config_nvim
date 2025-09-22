@@ -11,7 +11,7 @@ vim.lsp.enable("ts_ls")
 vim.lsp.enable("rust_analyzer")
 
 -- Go
-vim.lsp.enable("gopls")
+require("lsp.go")
 
 -- JavaScript
 

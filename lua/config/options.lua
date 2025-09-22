@@ -11,3 +11,5 @@ vim.opt.cursorline = true
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" } )

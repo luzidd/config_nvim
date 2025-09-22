@@ -24,6 +24,7 @@ return {
               "pyright",
               "ts_ls",
               "rust_analyzer",
+              "gopls",
           },
       },
   },
