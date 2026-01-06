@@ -13,6 +13,9 @@ vim.lsp.enable("rust_analyzer")
 -- Go
 require("lsp.go")
 
+-- json
+require("lsp.json")
+
 -- JavaScript
 
 
