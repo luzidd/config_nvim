@@ -1,3 +1,6 @@
+-- Keep line-delimited JSON separate from ordinary JSON formatting.
+vim.filetype.add({ extension = { jsonl = "jsonl", ndjson = "jsonl" } })
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4

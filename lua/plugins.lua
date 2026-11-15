@@ -51,6 +51,7 @@ return {
         lua = { "stylua" },
         json = { "prettier" },
         jsonc = { "prettier" },
+        jsonl = { "jsonl" },
         javascript = { "prettier" },
         javascriptreact = { "prettier" },
         typescript = { "prettier" },
@@ -58,6 +59,13 @@ return {
         rust = { "rustfmt" },
         go = { "gofmt" },
         python = { "ruff_format" },
+      },
+      formatters = {
+        jsonl = {
+          command = "jq",
+          args = { "--compact-output", "." },
+          stdin = true,
+        },
       },
       format_on_save = { timeout_ms = 2000, lsp_format = "never" },
     },
