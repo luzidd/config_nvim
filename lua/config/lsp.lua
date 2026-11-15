@@ -1,3 +1,8 @@
+-- Advertise completion support before enabling any servers.
+vim.lsp.config("*", {
+  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
+
 -- Lua
 require("lsp.lua")
 
@@ -5,6 +10,8 @@ require("lsp.lua")
 vim.lsp.enable("pyright")
 
 -- TypeScript
+-- JavaScript
+-- ts_ls supports both TypeScript and JavaScript, including React files.
 vim.lsp.enable("ts_ls")
 
 -- Rust
@@ -15,8 +22,5 @@ require("lsp.go")
 
 -- json
 require("lsp.json")
-
--- JavaScript
-
 
 -- Add more servers as needed

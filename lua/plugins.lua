@@ -4,8 +4,8 @@ return {
   { "folke/neoconf.nvim", cmd = "Neoconf" },
 
  -- UI
-  { "nvim-lualine/lualine.nvim" },
-  { "nvim-tree/nvim-tree.lua" },
+  { "nvim-lualine/lualine.nvim", opts = {} },
+  { "nvim-tree/nvim-tree.lua", opts = {} },
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
   -- LSP & Autocompletion
@@ -18,7 +18,9 @@ return {
   { "mason-org/mason.nvim", opts = {} },
   {
       "mason-org/mason-lspconfig.nvim",
+      dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
       opts = {
+          automatic_enable = false,
           ensure_installed = {
               "lua_ls",
               "pyright",
