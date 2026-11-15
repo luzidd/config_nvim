@@ -1,5 +1,5 @@
 [tools]
-stylua = "latest"
+stylua = "2.6.0"
 
 [tasks.fmt]
 description = "Format Lua files"
