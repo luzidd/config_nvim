@@ -33,6 +33,36 @@ return {
     },
   },
 
+  -- Install shared formatter binaries in Mason's data directory.
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "mason-org/mason.nvim" },
+    opts = {
+      ensure_installed = { "stylua", "prettier", "ruff" },
+      auto_update = false,
+    },
+  },
+
+  -- Formatting
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        json = { "prettier" },
+        jsonc = { "prettier" },
+        javascript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        rust = { "rustfmt" },
+        go = { "gofmt" },
+        python = { "ruff_format" },
+      },
+      format_on_save = { timeout_ms = 2000, lsp_format = "never" },
+    },
+  },
+
   -- Treesitter
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 }
