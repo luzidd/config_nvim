@@ -22,8 +22,14 @@ return {
           "encoding",
           {
             "fileformat",
-            fmt = function(format)
-              return ({ unix = "LF", dos = "CRLF", mac = "CR" })[format] or format
+            fmt = function(file_format)
+              local line_ending_labels = {
+                unix = "LF",
+                dos = "CRLF",
+                mac = "CR",
+              }
+
+              return line_ending_labels[file_format] or file_format
             end,
           },
           "filetype",
@@ -105,7 +111,10 @@ return {
           stdin = true,
         },
       },
-      format_on_save = { timeout_ms = 2000, lsp_format = "never" },
+      format_on_save = {
+        timeout_ms = 2000,
+        lsp_format = "never", -- Use the configured formatter, not the language server.
+      },
     },
   },
 

@@ -19,20 +19,27 @@ cmp.setup({
   },
 })
 
+local function resume_word_completion()
+  if vim.api.nvim_get_mode().mode ~= "i" then
+    return
+  end
+
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local column = cursor[2] -- Zero-based byte offset, also the length before the cursor.
+  local line = vim.api.nvim_get_current_line()
+  local text_before_cursor = line:sub(1, column)
+
+  -- Refresh only when continuing a word.
+  if text_before_cursor:match("[%w_]$") then
+    cmp.complete()
+  end
+end
+
 -- Request fresh candidates when resuming an existing word after Escape.
 vim.api.nvim_create_autocmd("InsertEnter", {
   group = vim.api.nvim_create_augroup("CompletionResume", { clear = true }),
   callback = function()
     -- Wait for insert mode and the cursor to settle.
-    vim.schedule(function()
-      if vim.api.nvim_get_mode().mode == "i" then
-        local cursor = vim.api.nvim_win_get_cursor(0)
-        local before_cursor = vim.api.nvim_get_current_line():sub(1, cursor[2])
-        -- Refresh only when continuing a word.
-        if before_cursor:match("[%w_]$") then
-          cmp.complete()
-        end
-      end
-    end)
+    vim.schedule(resume_word_completion)
   end,
 })
