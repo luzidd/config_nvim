@@ -20,4 +20,4 @@ vim.opt.listchars = {
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" } )
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })

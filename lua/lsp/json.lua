@@ -1,13 +1,13 @@
 vim.lsp.config["jsonls"] = {
-    cmd = { "vscode-json-language-server", "--stdio" },
-    filetypes = { "json", "jsonc" }, -- Supports JSON and JSONC (JSON with comments)
-    init_options = {
-        provideFormatter = true, -- Enable formatting Support
-    },
-    --root_dir = function(fname)
-    --    return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
-    --end,
-    single_file_support = true,
+  cmd = { "vscode-json-language-server", "--stdio" },
+  filetypes = { "json", "jsonc" }, -- Supports JSON and JSONC (JSON with comments)
+  init_options = {
+    provideFormatter = true, -- Enable formatting Support
+  },
+  --root_dir = function(fname)
+  --    return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+  --end,
+  single_file_support = true,
 }
 
 vim.lsp.enable("jsonls")
