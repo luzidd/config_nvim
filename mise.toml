@@ -1,2 +1,10 @@
 [tools]
 stylua = "latest"
+
+[tasks.fmt]
+description = "Format Lua files"
+run = "stylua init.lua lua"
+
+[tasks.fmt-check]
+description = "Check Lua formatting"
+run = "stylua --check init.lua lua"
