@@ -1,21 +1,55 @@
 return {
+  -- ========================================================================
+  -- Editor helpers
+  -- ========================================================================
   "folke/neodev.nvim",
   "folke/which-key.nvim",
   { "folke/neoconf.nvim", cmd = "Neoconf" },
 
-  -- UI
-  { "nvim-lualine/lualine.nvim", opts = {} },
+  -- ========================================================================
+  -- UI and navigation
+  -- ========================================================================
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = {
+      options = {
+        icons_enabled = false,
+        component_separators = { left = "|", right = "|" },
+        section_separators = { left = "", right = "" },
+      },
+      sections = {
+        lualine_x = {
+          "encoding",
+          {
+            "fileformat",
+            fmt = function(format)
+              return ({ unix = "LF", dos = "CRLF", mac = "CR" })[format] or format
+            end,
+          },
+          "filetype",
+        },
+      },
+    },
+  },
   { "nvim-tree/nvim-tree.lua", opts = {} },
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
 
-  -- LSP & Autocompletion
+  -- ========================================================================
+  -- Language server integration
+  -- ========================================================================
   { "neovim/nvim-lspconfig" },
+
+  -- ========================================================================
+  -- Completion and snippets
+  -- ========================================================================
   { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip" } },
   { "L3MON4D3/LuaSnip" },
 
-  -- Mason LSP Manager
+  -- ========================================================================
+  -- Language server installation (Mason)
+  -- ========================================================================
   { "mason-org/mason.nvim", opts = {} },
   {
     "mason-org/mason-lspconfig.nvim",
@@ -33,7 +67,9 @@ return {
     },
   },
 
-  -- Install shared formatter binaries in Mason's data directory.
+  -- ========================================================================
+  -- Formatter installation (Mason)
+  -- ========================================================================
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = { "mason-org/mason.nvim" },
@@ -43,7 +79,9 @@ return {
     },
   },
 
-  -- Formatting
+  -- ========================================================================
+  -- Formatting (Conform)
+  -- ========================================================================
   {
     "stevearc/conform.nvim",
     opts = {
@@ -71,6 +109,8 @@ return {
     },
   },
 
-  -- Treesitter
+  -- ========================================================================
+  -- Syntax parsing (Treesitter)
+  -- ========================================================================
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 }

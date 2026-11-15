@@ -8,6 +8,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
+vim.opt.showmode = false -- Lualine already displays the current mode.
 vim.opt.list = true
 vim.opt.listchars = {
   tab = "»·",
