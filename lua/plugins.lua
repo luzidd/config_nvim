@@ -37,8 +37,112 @@ return {
       },
     },
   },
-  { "nvim-tree/nvim-tree.lua", opts = {} },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      renderer = {
+        highlight_git = "none", -- Keep filename colors unchanged.
+        icons = {
+          git_placement = "signcolumn",
+          symlink_arrow = " -> ",
+          show = {
+            file = false,
+            folder = false,
+            folder_arrow = true,
+            git = true,
+            modified = false,
+            hidden = false,
+            diagnostics = false,
+            bookmarks = false,
+          },
+          glyphs = {
+            folder = { arrow_closed = ">", arrow_open = "v" },
+            git = {
+              unstaged = "M",
+              staged = "S",
+              unmerged = "!",
+              renamed = "R",
+              untracked = "?",
+              deleted = "D",
+              ignored = "I",
+            },
+          },
+        },
+      },
+    },
+    config = function(_, options)
+      require("nvim-tree").setup(options)
+
+      local function highlight_git_markers()
+        local colors = {
+          NvimTreeGitDirtyIcon = "#e5c07b", -- Modified: yellow
+          NvimTreeGitStagedIcon = "#98c379", -- Staged: green
+          NvimTreeGitNewIcon = "#61afef", -- Untracked: blue
+          NvimTreeGitRenamedIcon = "#56b6c2", -- Renamed: cyan
+          NvimTreeGitDeletedIcon = "#e06c75", -- Deleted: red
+          NvimTreeGitMergeIcon = "#e06c75", -- Conflict: red
+          NvimTreeGitIgnoredIcon = "#7f848e", -- Ignored: gray
+        }
+
+        for group, color in pairs(colors) do
+          vim.api.nvim_set_hl(0, group, { fg = color })
+        end
+      end
+
+      -- Reapply marker colors when switching colorschemes.
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("TreeGitColors", { clear = true }),
+        callback = highlight_git_markers,
+      })
+      highlight_git_markers()
+    end,
+  },
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+
+  -- ========================================================================
+  -- Git changes
+  -- ========================================================================
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      -- ASCII gutter markers; no special font required.
+      signs = {
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "_" },
+        topdelete = { text = "-" },
+        changedelete = { text = "~" },
+        untracked = { text = "?" },
+      },
+      signs_staged_enable = false,
+
+      -- Keep Git shortcuts local to attached buffers.
+      on_attach = function(buffer)
+        local gitsigns = require("gitsigns")
+
+        -- Preserve native change navigation in diff windows.
+        vim.keymap.set("n", "]c", function()
+          if vim.wo.diff then
+            vim.cmd.normal({ "]c", bang = true })
+          else
+            gitsigns.nav_hunk("next")
+          end
+        end, { buffer = buffer, desc = "Next Git change" })
+
+        vim.keymap.set("n", "[c", function()
+          if vim.wo.diff then
+            vim.cmd.normal({ "[c", bang = true })
+          else
+            gitsigns.nav_hunk("prev")
+          end
+        end, { buffer = buffer, desc = "Previous Git change" })
+
+        -- Inspect changes without modifying the Git index.
+        vim.keymap.set("n", "<leader>gp", gitsigns.preview_hunk, { buffer = buffer, desc = "Preview Git change" })
+        vim.keymap.set("n", "<leader>gb", gitsigns.blame_line, { buffer = buffer, desc = "Git blame line" })
+      end,
+    },
+  },
 
   -- ========================================================================
   -- Language server integration

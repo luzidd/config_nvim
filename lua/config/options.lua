@@ -18,12 +18,13 @@ vim.opt.expandtab = true
 -- Appearance
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
+vim.opt.signcolumn = "yes" -- Reserve space for Git signs and diagnostics.
 vim.opt.showmode = false -- Lualine already displays the current mode.
 
 -- Visible whitespace
 vim.opt.list = true
 vim.opt.listchars = {
-  tab = "»·",
+  tab = "» ",
   trail = "·",
   extends = ">",
   precedes = "<",

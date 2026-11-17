@@ -1,6 +1,7 @@
 # Neovim configuration
 
-Plugins: [lazy.nvim](https://github.com/folke/lazy.nvim). Language servers: [Mason](https://github.com/mason-org/mason.nvim).
+Plugins: [lazy.nvim](https://github.com/folke/lazy.nvim).
+Language servers: [Mason](https://github.com/mason-org/mason.nvim).
 
 ## Requirements
 
@@ -26,6 +27,27 @@ Leader: **Space**. Press keys in sequence in normal mode.
 | `Space m` | Open Mason |
 
 In insert mode, Tab and Shift-Tab navigate completion suggestions; Enter confirms the selection.
+
+## Git
+
+[Gitsigns](https://github.com/lewis6991/gitsigns.nvim) adds gutter markers and buffer-local shortcuts in Git-tracked files.
+
+| Keys | Action |
+| --- | --- |
+| `]c` / `[c` | Next / previous change |
+| `Space g p` | Preview change |
+| `Space g b` | Blame current line |
+
+Gutter: `+` added, `~` changed, `_` deleted below, `-` deleted above the first line. `~` also marks changed-and-deleted lines; `?` marks untracked lines when attached.
+
+File tree Git markers:
+
+| Marker | Status |
+| --- | --- |
+| `M` / `S` | Unstaged / staged |
+| `?` / `I` | Untracked / ignored |
+| `!` | Conflict |
+| `R` / `D` | Renamed / deleted |
 
 ## Formatting
 
