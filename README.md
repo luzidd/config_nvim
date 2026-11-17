@@ -10,7 +10,7 @@ Language servers: [Mason](https://github.com/mason-org/mason.nvim).
 - Server-specific tools, such as Node.js and npm for TypeScript
 - [mise](https://mise.jdx.dev/) for formatting (optional)
 
-First startup installs plugins and configures Mason to install Lua, Python, TypeScript/JavaScript, Rust, Go, and JSON servers.
+First startup installs plugins and configures Mason to install Lua, Bash, Python, TypeScript/JavaScript, Rust, Go, and JSON servers.
 
 ## Keybindings
 
@@ -20,6 +20,7 @@ Leader: **Space**. Press keys in sequence in normal mode.
 | --- | --- |
 | `gd` | Go to definition |
 | `Space e` | Toggle file tree |
+| `Space o` | Toggle heading / code outline |
 | `Space f f` | Find files |
 | `Space f g` | Search text |
 | `Space f b` | Find buffers |
@@ -27,6 +28,12 @@ Leader: **Space**. Press keys in sequence in normal mode.
 | `Space m` | Open Mason |
 
 In insert mode, Tab and Shift-Tab navigate completion suggestions; Enter confirms the selection.
+
+## Outline
+
+`Space o` opens [Aerial](https://github.com/stevearc/aerial.nvim) on the right. Select a heading or symbol and press Enter to jump.
+
+Markdown works without extra tools. Other languages need a compatible Treesitter parser or an attached LSP server with document-symbol support.
 
 ## Git
 

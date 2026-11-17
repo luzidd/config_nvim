@@ -6,6 +6,9 @@ vim.lsp.config("*", {
 -- Lua
 require("lsp.lua")
 
+-- Bash and shell scripts
+vim.lsp.enable("bashls")
+
 -- Python
 vim.lsp.enable("pyright")
 

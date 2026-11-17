@@ -98,6 +98,18 @@ return {
     end,
   },
   { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  {
+    "stevearc/aerial.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "AerialToggle", "AerialOpen", "AerialClose" },
+    opts = {
+      -- Markdown headings need no server; code uses Treesitter or LSP symbols.
+      backends = { "treesitter", "lsp", "markdown" },
+      layout = { default_direction = "right" },
+      nerd_font = false,
+      icons = { Interface = "#" },
+    },
+  },
 
   -- ========================================================================
   -- Git changes
@@ -168,6 +180,7 @@ return {
       automatic_enable = false,
       ensure_installed = {
         "lua_ls",
+        "bashls",
         "pyright",
         "ts_ls",
         "rust_analyzer",
