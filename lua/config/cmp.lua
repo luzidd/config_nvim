@@ -14,6 +14,8 @@ cmp.setup({
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
   }),
   sources = {
+    -- Complete plugin module names in require() calls.
+    { name = "lazydev", group_index = 0 },
     { name = "nvim_lsp" },
     { name = "luasnip" },
   },

@@ -2,7 +2,16 @@ return {
   -- ========================================================================
   -- Editor helpers
   -- ========================================================================
-  "folke/neodev.nvim",
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        -- Load libuv types only when a file uses vim.uv.
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
   "folke/which-key.nvim",
   { "folke/neoconf.nvim", cmd = "Neoconf" },
 

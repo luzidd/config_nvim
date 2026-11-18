@@ -10,6 +10,10 @@ vim.lsp.config["lua_ls"] = {
       runtime = {
         version = "LuaJIT",
       },
+      workspace = {
+        -- Provide core Neovim types before lazydev adds plugin libraries.
+        library = { vim.env.VIMRUNTIME .. "/lua" },
+      },
     },
   },
 }
