@@ -1,6 +1,7 @@
 # Neovim configuration
 
 Plugins: [lazy.nvim](https://github.com/folke/lazy.nvim).
+
 Language servers: [Mason](https://github.com/mason-org/mason.nvim).
 
 ## Requirements
