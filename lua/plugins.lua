@@ -179,6 +179,37 @@ return {
   { "L3MON4D3/LuaSnip" },
 
   -- ========================================================================
+  -- Local AI completion (llama.vim)
+  -- ========================================================================
+  {
+    "ggml-org/llama.vim",
+    init = function()
+      vim.g.llama_config = {
+        endpoint_fim = "http://127.0.0.1:8080/infill",
+        auto_fim = true,
+        show_info = false,
+        ring_n_chunks = 0, -- Do not send extra context from other buffers or yanks.
+
+        -- Keep Tab and Shift-Tab available for nvim-cmp.
+        keymap_fim_trigger = "<M-f>",
+        keymap_fim_accept_full = "<M-a>",
+        keymap_fim_accept_line = "",
+        keymap_fim_accept_word = "",
+        keymap_fim_next = "",
+        keymap_fim_prev = "",
+
+        -- This integration is completion-only; preserve other editing keys.
+        keymap_inst_trigger = "",
+        keymap_inst_rerun = "",
+        keymap_inst_continue = "",
+        keymap_inst_accept = "",
+        keymap_inst_cancel = "",
+        keymap_debug_toggle = "",
+      }
+    end,
+  },
+
+  -- ========================================================================
   -- Language server installation (Mason)
   -- ========================================================================
   { "mason-org/mason.nvim", opts = {} },

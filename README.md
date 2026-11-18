@@ -29,6 +29,14 @@ Leader: **Space**. Press keys in sequence in normal mode.
 
 In insert mode, Tab and Shift-Tab navigate completion suggestions; Enter confirms the selection.
 
+## Local AI completion
+
+[llama.vim](https://github.com/ggml-org/llama.vim) requests inline suggestions from llama-server at `http://127.0.0.1:8080/infill` (requires `curl` and a running FIM-capable model).
+
+In insert mode: **Alt-a** accepts a suggestion; **Alt-f** requests one manually. Tab remains reserved for nvim-cmp. Toggle automatic suggestions with `:LlamaToggleAutoFim`.
+
+The current file's context is sent to the local server; extra context from other buffers and yanks is disabled.
+
 ## Outline
 
 `Space o` opens [Aerial](https://github.com/stevearc/aerial.nvim) on the right. Select a heading or symbol and press Enter to jump.
