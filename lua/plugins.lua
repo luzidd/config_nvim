@@ -178,6 +178,35 @@ return {
   { "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip" } },
   { "L3MON4D3/LuaSnip" },
 
+  --[=[ Temporarily disable AI completion plugins.
+  -- ========================================================================
+  -- Structured local AI suggestions (Avante)
+  -- ========================================================================
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    version = false,
+    build = "OPENSSL_NO_VENDOR=1 PATH=$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH make",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      { "ColinKennedy/mega.cmdparse", dependencies = { "ColinKennedy/mega.logging" } },
+    },
+    opts = {
+      provider = "local_gemma",
+      providers = {
+        local_gemma = {
+          __inherited_from = "openai",
+          endpoint = "http://127.0.0.1:8081/v1",
+          model = "gemma-4-E2B-it-Q8_0.gguf",
+          api_key_name = "",
+          timeout = 120000,
+          extra_request_body = { chat_template_kwargs = { enable_thinking = false } },
+        },
+      },
+      behaviour = { auto_suggestions = true },
+    },
+  },
+
   -- ========================================================================
   -- Local AI completion (llama.vim)
   -- ========================================================================
@@ -186,7 +215,10 @@ return {
     init = function()
       vim.g.llama_config = {
         endpoint_fim = "http://127.0.0.1:8080/infill",
-        auto_fim = true,
+        auto_fim = false, -- Avante handles automatic suggestions; Alt-f still triggers llama.vim.
+        -- Allow longer suggestions on slower local models.
+        t_max_predict_ms = 10000, -- Follow-up requests; the plugin caps the first at 250 ms.
+        n_predict = 256,
         show_info = false,
         ring_n_chunks = 0, -- Do not send extra context from other buffers or yanks.
 
@@ -208,6 +240,8 @@ return {
       }
     end,
   },
+
+  ]=]
 
   -- ========================================================================
   -- Language server installation (Mason)

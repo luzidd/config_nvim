@@ -32,5 +32,7 @@ require("lazy").setup({
   },
   -- Use a built-in colorscheme while plugins are being installed.
   install = { colorscheme = { "habamax" } },
+  -- Native plugin builds can take longer than the default two-minute timeout.
+  git = { timeout = 900 },
   checker = { enabled = true },
 })
