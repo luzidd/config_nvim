@@ -20,6 +20,8 @@ Leader: **Space**. Press keys in sequence in normal mode.
 | Keys | Action |
 | --- | --- |
 | `gd` | Go to definition |
+| `gl` | Show line diagnostics |
+| `Space d` | Diagnostic overview for the current file |
 | `Space e` | Toggle file tree |
 | `Space o` | Toggle heading / code outline |
 | `Space f f` | Find files |

@@ -15,8 +15,8 @@ vim.lsp.enable("pyright")
 -- TypeScript and JavaScript, including React files
 vim.lsp.enable("ts_ls")
 
--- Rust
-vim.lsp.enable("rust_analyzer")
+-- Rust, including standalone files outside Cargo projects.
+require("lsp.rust")
 
 -- Go
 require("lsp.go")

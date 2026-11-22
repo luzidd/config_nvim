@@ -1,5 +1,7 @@
 -- Language navigation
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+vim.keymap.set("n", "<leader>d", "<cmd>Telescope diagnostics bufnr=0<cr>", { desc = "Diagnostic overview" })
 
 -- File navigation and search
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
